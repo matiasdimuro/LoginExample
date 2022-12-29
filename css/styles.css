@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300&display=swap');
+
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Hanken Grotesk', sans-serif;
+    transition: 
+        background-color .125s linear, 
+        border-color .125s linear;
+}
+:root {
+    --blue_primary: hsl(208, 79%, 51%);
+    --blue_light: hsl(209, 100%, 71%);
+    --blue_dark: hsl(209, 100%, 35%);
+
+    --grey_primary: hsl(0, 0%, 13%);
+    --grey_light: hsl(0, 0%, 28%);
+    --grey_dark: hsl(0, 0%, 11%);
+
+    --light: hsl(0, 0%, 100%);
+    --dark: hsl(0, 0%, 0%);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background-color: var(--background);
+}
+
+main article {
+    width: 550px;
+    max-width: 100%;
+}
+
+footer {
+    min-height: 100px;
+}
+
+button {
+    background-color: var(--button) !important;
+}
+
+
+
+
+.theme-switch {
+    width: 60px;
+    padding: .425rem;
+    display: flex;
+
+    border: 2px solid black;
+    border-radius: calc(60px / 2);
+}
+
+.theme-switch_input-label {
+    position: relative;
+    left: 0;
+
+    width: 50%;
+    height: 20px;
+
+    outline: 2px solid var(--color_primary);
+    outline-offset: 2px;
+    border-radius: calc(60px / 2);
+
+    background-color: var(--color_primary);
+    cursor: pointer;
+
+    transition: all .15s;
+}
+
+.theme-switch_input {
+    appearance: none;
+}
+
+.theme-switch input[type = "checkbox"]:checked + label {
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+
+
+
+:root:not(:has(#toggle-theme:checked)) {
+    --color_primary: hsl(208, 79%, 51%);
+    --background: hsl(208, 79%, 51%);
+    --button: hsl(207.88,79.2%,50.98%);
+}
+
+:root:has(#toggle-theme:checked) {
+    --color_primary: hsl(0, 0%, 13%);
+    --background: hsl(0, 0%, 13%);
+    --button: hsl(0, 0%, 11%);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color_primary: hsl(208, 79%, 51%);
+        --background: hsl(208, 79%, 51%);
+        --button: hsl(207.88,79.2%,50.98%);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color_primary: hsl(0, 0%, 13%);
+        --background: hsl(0, 0%, 13%);
+        --button: hsl(0, 0%, 11%);
+    }
+}
+
+
+
+.bg-blue-primary {
+    background-color: var(--blue_primary);
+}
+.bg-light {
+    background-color: var(--light);
+}

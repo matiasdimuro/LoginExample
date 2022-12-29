@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate" />
+    <meta name="author" content="Matias Di muro - Developer">
+    <meta name="keywords" content="HTML, CSS, Javascript, Frontend, Website, Bootstrap">
+    <meta name="description" content="This page is a frontend challenge where I have practiced my skills and learned a lot of new stuffs.">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Login Example - Frontend Practice</title>
+</head>
+<body translate="no">
+
+    <main class="d-flex flex-column container-fluid h-100 p-0">
+        <header class="p-2 bg-light d-flex flex-row justify-content-between align-items-center border-bottom border-2 border-dark">
+            <p id="date" class="mb-0">Tuesday, December 27, 2022 - 15:41:00</p>
+            <form class="theme-switch">
+                <input type="checkbox" id="toggle-theme" class="theme-switch_input">
+                <label for="toggle-theme" class="theme-switch_input-label"></label>
+            </form>
+        </header> 
+        <article class="bg-light d-flex flex-column align-self-center text-center h-auto mt-5 mb-5 p-3 p-sm-5 border border-2 border-dark rounded-3">
+            <section class="mb-3 mb-sm-5">
+                <h1 class="display-5">Login Example !</h1>
+            </section>
+            <section class="container">
+                <div class="row g-2 g-sm-4">
+                    <div class="col-sm-6">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary border border-dark border-2 w-100">
+                            Sign in
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary border border-dark border-2 w-100">
+                            Sign up
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary border border-dark border-2 w-100">
+                            View my local users
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary border border-dark border-2 w-100">
+                            Delete a local user
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="d-flex justify-content-center align-items-center border-top border-2 border-dark">
+        <section class="d-flex flex-row justify-content-center align-items-center">
+            <a href="https://github.com/matiasdimuro" target="_blank"
+                class="me-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="27" height="27" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--dark)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                </svg>
+            </a>
+            <p class="m-0 fw-semibold">matiasdimuro</p>
+        </section>
+    </footer>
+
+    <script src="js/themeHandler.js"></script>
+</body>
+</html>
