@@ -29,29 +29,33 @@
                 <div class="row g-2 g-sm-4">
                     <div class="col-sm-6">
                         <button 
+                            id="signInButton"
                             type="button" 
-                            class="btn btn-primary border border-dark border-2 w-100">
+                            class="btn btn-primary border border-dark border-2 w-100   modal-toggle">
                             Sign in
                         </button>
                     </div>
                     <div class="col-sm-6">
                         <button 
+                            id="signUpButton"
                             type="button" 
-                            class="btn btn-primary border border-dark border-2 w-100">
+                            class="btn btn-primary border border-dark border-2 w-100   modal-toggle">
                             Sign up
                         </button>
                     </div>
                     <div class="col-sm-6">
                         <button 
+                            id="viewUsersButton"
                             type="button" 
-                            class="btn btn-primary border border-dark border-2 w-100">
+                            class="btn btn-primary border border-dark border-2 w-100   modal-toggle">
                             View my local users
                         </button>
                     </div>
                     <div class="col-sm-6">
                         <button 
+                            id="deleteUserButton"
                             type="button" 
-                            class="btn btn-primary border border-dark border-2 w-100">
+                            class="btn btn-primary border border-dark border-2 w-100   modal-toggle">
                             Delete a local user
                         </button>
                     </div>
@@ -73,6 +77,98 @@
         </section>
     </footer>
 
+    <dialog 
+        id="signInModal" 
+        class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
+        <p class="h1 text-capitalize mb-4 text-center fw-bold">Create a new user</p>
+        <form class="container"  method="dialog">
+            <div class="row g-4">
+                <div class="form-group col-sm-6 ps-sm-0 ">
+                    <label for="name-input">Name</label>
+                    <input type="text" class="form-control" id="name-input" placeholder="Jhon" maxlength="35" autocomplete="off" >
+                </div>
+                <div class="form-group col-sm-6 pe-sm-0">
+                    <label for="surname-input">Surname</label>
+                    <input type="text" class="form-control" id="surname-input" placeholder="Doe" maxlength="35" autocomplete="off">
+                </div>
+                <div class="form-group col-sm-6 ps-sm-0 ">
+                    <label for="username-input">Username</label>
+                    <input type="text" class="form-control" id="username-input" maxlength="35" autocomplete="off" required>
+                </div>
+                <div class="form-group col-sm-6 pe-sm-0">
+                    <label for="password-input">Password</label>
+                    <input type="password" class="form-control" id="password-input" maxlength="35" autocomplete="off" required>
+                </div>
+                <div class="form-group col-sm-6 ps-sm-0 ">
+                    <label for="born-input">Born date</label>
+                    <input type="date" class="form-control" id="born-input">
+                </div>
+                <div class="form-group col-sm-6 pe-sm-0">
+                    <label for="gender-select">Gender</label>
+                    <select id="gender-select" class="form-select">
+                        <option selected>Click to see the options</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="confidential">Confidential</option>
+                      </select>
+                </div>
+                <div class="form-group col-6 ps-sm-0">
+                    <label for="email-input">Email</label>
+                    <input type="email" class="form-control" id="email-input" placeholder="jhondoe@gmail.com" required>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-sm-6 ps-sm-0">
+                    <button type="submit" class="btn btn-primary w-100">Create</button>
+                </div>
+                <div class="col-sm-6 pe-sm-0">
+                    <button type="reset" class="btn btn-primary col-sm-6 w-100">Clear</button>
+                </div>
+            </div>
+            <button id="signInCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+        </form>
+    </dialog>
+
+    <dialog 
+        id="signUpModal" 
+        class="modal-box p-5 container-sm bg-light border border-2 border-dark rounded position-relative">
+        
+        <form class="container" method="dialog">
+            <div class="row g-4">
+                <div class="form-group col-12">
+                    <label for="username-signup-input">What is your username?</label>
+                    <input type="text" class="form-control" id="username-signup-input" maxlength="35" autocomplete="off" required>
+                </div>
+                <div class="form-group col-12">
+                    <label for="password-signup-input">Input your user password</label>
+                    <input type="password" class="form-control" id="password-signup-input" maxlength="35" autocomplete="off" required>
+                </div>
+            </div>    
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary w-25">Sign up</button>
+            </div>
+            <button id="signUpCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+        </form>
+    </dialog>
+
+    <dialog 
+        id="viewUsersModal" 
+        class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
+        <h2>Modal 3</h2>
+        <p>Esto es un parrafo</p>
+        <button id="viewUsersCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+    </dialog>
+
+    <dialog 
+        id="deleteUserModal" 
+        class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
+        <h2>Modal 4</h2>
+        <p>Esto es un parrafo</p>
+        <button id="deleteUserCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+    </dialog>
+
     <script src="js/themeHandler.js"></script>
+    <script src="js/toggleModal.js"></script>
 </body>
 </html>

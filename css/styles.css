@@ -8,7 +8,7 @@
     font-family: 'Hanken Grotesk', sans-serif;
     transition: 
         background-color .125s linear, 
-        border-color .125s linear;
+        border-color .3s linear;
 }
 :root {
     --blue_primary: hsl(208, 79%, 51%);
@@ -43,10 +43,37 @@ footer {
     min-height: 100px;
 }
 
-button {
+button:not(.btn-close) {
     background-color: var(--button) !important;
+    border: 2px solid var(--grey_primary) !important;
 }
 
+button:is(.btn-close):focus {
+    box-shadow: none !important;
+}
+
+.modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modal-box::backdrop {
+    background-color: hsla(0, 0%, 10%, 0.651);
+}
+
+.modal-box:is(#signInModal) {
+    background-color: aqua;
+}
+
+/* .modal-box:is(#signUpModal) {
+}
+
+.modal-box:is(#viewUsersModal) {
+}
+
+.modal-box:is(#deleteUserModal) {
+} */
 
 
 
