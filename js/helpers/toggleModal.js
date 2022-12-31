@@ -1,18 +1,5 @@
 const toggleModalButtons = document.querySelectorAll('.modal-toggle');
 const closeModalButtons = document.querySelectorAll('.btn-close');
-const modals = document.querySelectorAll('.modal-box');
-
-toggleModalButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        manageModalState(e.target.id)
-    })
-});
-
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        manageCloseOfModal(e.target.id);
-    })
-})
 
 function manageModalState(buttonId) {
 
@@ -73,10 +60,34 @@ function manageCloseOfModal(closeButtonId) {
 
 function resetInputFields(modalId) {
      
-    const modalNodes = Object.values(modals);
+    let inputFields = null, selectFields = null;
 
-    const modal = modalNodes.filter(button => button.id === modalId);
+    switch (modalId) {
+        case "signInModal":
+            inputFields = document.querySelectorAll('input[name="signin-modal"]');
+            selectFields = document.querySelectorAll('select[name="signin-modal"]');
+            break;
 
-    console.log(modal);
-    console.log(modal.childNodes);
+        case "signUpModal":
+            inputFields = document.querySelectorAll('input[name="signup-modal"]');
+            selectFields = document.querySelectorAll('select[name="signup-modal"]');
+            break;
+    
+        default:
+            break;
+    }
+
+    if (inputFields !== null && inputFields.length > 0) {
+        Object.values(inputFields).forEach(field => {
+            field.value = "";
+        })
+    }
+
+    if (selectFields !== null && selectFields.length > 0) {
+        Object.values(selectFields).forEach(field => {
+            field.value = "Click to see the options";
+        })
+    }
 }
+
+export { toggleModalButtons, closeModalButtons, manageModalState, manageCloseOfModal, resetInputFields }

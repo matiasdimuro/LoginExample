@@ -15,7 +15,14 @@
 
     <main class="d-flex flex-column container-fluid h-100 p-0">
         <header class="p-2 bg-light d-flex flex-row justify-content-between align-items-center border-bottom border-2 border-dark">
-            <p id="date" class="mb-0">Tuesday, December 27, 2022 - 15:41:00</p>
+            <p id="date" class="mb-0">
+                <span id="day-name"></span>,
+                <span id="month"></span> <span id="day-num"></span>, 
+                <span id="year"></span> -
+                <span id="time">
+                    <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>
+                </span>
+            </p>
             <form class="theme-switch">
                 <input type="checkbox" id="toggle-theme" class="theme-switch_input">
                 <label for="toggle-theme" class="theme-switch_input-label"></label>
@@ -85,27 +92,27 @@
             <div class="row g-4">
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="name-input">Name</label>
-                    <input type="text" class="form-control" id="name-input" placeholder="Jhon" maxlength="35" autocomplete="off" >
+                    <input name="signin-modal" type="text" class="form-control" id="name-input" placeholder="Jhon" maxlength="35" autocomplete="off" >
                 </div>
                 <div class="form-group col-sm-6 pe-sm-0">
                     <label for="surname-input">Surname</label>
-                    <input type="text" class="form-control" id="surname-input" placeholder="Doe" maxlength="35" autocomplete="off">
+                    <input name="signin-modal" type="text" class="form-control" id="surname-input" placeholder="Doe" maxlength="35" autocomplete="off">
                 </div>
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="username-input">Username</label>
-                    <input type="text" class="form-control" id="username-input" maxlength="35" autocomplete="off" required>
+                    <input name="signin-modal" type="text" class="form-control" id="username-input" maxlength="35" autocomplete="off" required>
                 </div>
                 <div class="form-group col-sm-6 pe-sm-0">
                     <label for="password-input">Password</label>
-                    <input type="password" class="form-control" id="password-input" maxlength="35" autocomplete="off" required>
+                    <input name="signin-modal" type="password" class="form-control" id="password-input" maxlength="35" autocomplete="off" required>
                 </div>
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="born-input">Born date</label>
-                    <input type="date" class="form-control" id="born-input">
+                    <input name="signin-modal" type="date" class="form-control" id="born-input">
                 </div>
                 <div class="form-group col-sm-6 pe-sm-0">
                     <label for="gender-select">Gender</label>
-                    <select id="gender-select" class="form-select">
+                    <select name="signin-modal" id="gender-select" class="form-select">
                         <option selected>Click to see the options</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -113,7 +120,7 @@
                         <option value="confidential">Confidential</option>
                       </select>
                 </div>
-                <div class="form-group col-6 ps-sm-0">
+                <div class="form-group col-sm-6 ps-sm-0">
                     <label for="email-input">Email</label>
                     <input type="email" class="form-control" id="email-input" placeholder="jhondoe@gmail.com" required>
                 </div>
@@ -138,11 +145,11 @@
             <div class="row g-4">
                 <div class="form-group col-12">
                     <label for="username-signup-input">What is your username?</label>
-                    <input type="text" class="form-control" id="username-signup-input" maxlength="35" autocomplete="off" required>
+                    <input name="signup-modal" type="text" class="form-control" id="username-signup-input" maxlength="35" autocomplete="off" required>
                 </div>
                 <div class="form-group col-12">
                     <label for="password-signup-input">Input your user password</label>
-                    <input type="password" class="form-control" id="password-signup-input" maxlength="35" autocomplete="off" required>
+                    <input name="signup-modal" type="password" class="form-control" id="password-signup-input" maxlength="35" autocomplete="off" required>
                 </div>
             </div>    
             <div class="text-center mt-5">
@@ -162,13 +169,25 @@
 
     <dialog 
         id="deleteUserModal" 
-        class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
-        <h2>Modal 4</h2>
-        <p>Esto es un parrafo</p>
-        <button id="deleteUserCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+        class="modal-box p-5 container-sm bg-light border border-2 border-dark rounded position-relative">
+        <form class="container" method="dialog">
+            <div class="row g-4">
+                <div class="form-group col-12">
+                    <label for="username-signup-input">What is the username?</label>
+                    <input name="delete-modal" type="text" class="form-control" id="username-delete-input" maxlength="35" autocomplete="off" required>
+                </div>
+                <div class="form-group col-12">
+                    <label for="password-delete-input">Input the user password</label>
+                    <input name="delete-modal" type="password" class="form-control" id="password-delete-input" maxlength="35" autocomplete="off" required>
+                </div>
+            </div>    
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary w-25">Delete</button>
+            </div>
+            <button id="deleteUserCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+        </form>
     </dialog>
 
-    <script src="js/themeHandler.js"></script>
-    <script src="js/toggleModal.js"></script>
+    <script src="js/app.js" type="module"></script>
 </body>
 </html>
