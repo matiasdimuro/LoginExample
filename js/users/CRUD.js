@@ -1,4 +1,4 @@
-import { User } from "./User";
+import { User } from "./User.js";
 
 function createUser(name, surname, username, password, bornDate, gender, email) {
     

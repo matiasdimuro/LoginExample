@@ -1,10 +1,12 @@
 import { updateDateHour } from "./helpers/getDate.js";
 import { toggleModalButtons, closeModalButtons,  manageModalState, resetInputFields, manageCloseOfModal } from "./helpers/toggleModal.js";
+import { validateSignInModal } from "./helpers/formValidation.js";
 
 const toggleThemeButton = document.getElementById('toggle-theme');
 const lightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
 
 !lightMode && toggleThemeButton.click();
+
 
 
 
@@ -24,3 +26,37 @@ closeModalButtons.forEach(button => {
         manageCloseOfModal(e.target.id);
     })
 })
+
+
+
+
+const inputs = document.querySelectorAll('input');
+
+inputs.forEach(input => {
+
+    let maxlength = null;
+    if (input.hasAttribute('maxlength')) {
+        maxlength = Number.parseInt(input.getAttribute('maxlength'));
+    }
+
+    input.addEventListener('input', (e) => {
+        if ((maxlength != null) && (input.value.length > maxlength)) {
+            const oldValue = input.value;
+            input.value = oldValue.slice(0, oldValue.length - 1);
+        }
+    });
+})
+
+
+
+
+const signInForm = document.getElementById('signInForm');
+
+signInForm.addEventListener('submit', (e) => {
+    
+    e.preventDefault();
+    
+    if(!validateSignInModal()) {
+        console.log("Complete fields correctly please.")
+    }
+});

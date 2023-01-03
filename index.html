@@ -88,7 +88,7 @@
         id="signInModal" 
         class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
         <p class="h1 text-capitalize mb-4 text-center fw-bold">Create a new user</p>
-        <form class="container"  method="dialog">
+        <form id="signInForm" class="container"  method="dialog">
             <div class="row g-4">
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="name-input">Name</label>
@@ -100,11 +100,11 @@
                 </div>
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="username-input">Username</label>
-                    <input name="signin-modal" type="text" class="form-control" id="username-input" maxlength="35" autocomplete="off" required>
+                    <input name="signin-modal" type="text" class="form-control" id="username-input" minlength="5" maxlength="35" autocomplete="off" required>
                 </div>
                 <div class="form-group col-sm-6 pe-sm-0">
                     <label for="password-input">Password</label>
-                    <input name="signin-modal" type="password" class="form-control" id="password-input" maxlength="35" autocomplete="off" required>
+                    <input name="signin-modal" type="password" class="form-control" id="password-input" minlength="10" maxlength="35" autocomplete="off" required>
                 </div>
                 <div class="form-group col-sm-6 ps-sm-0 ">
                     <label for="born-input">Born date</label>
@@ -113,7 +113,7 @@
                 <div class="form-group col-sm-6 pe-sm-0">
                     <label for="gender-select">Gender</label>
                     <select name="signin-modal" id="gender-select" class="form-select">
-                        <option selected>Click to see the options</option>
+                        <option selected value="">Click to see the options</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
@@ -122,12 +122,12 @@
                 </div>
                 <div class="form-group col-sm-6 ps-sm-0">
                     <label for="email-input">Email</label>
-                    <input type="email" class="form-control" id="email-input" placeholder="jhondoe@gmail.com" required>
+                    <input name="signin-modal" type="email" class="form-control" id="email-input" placeholder="jhondoe@gmail.com" required>
                 </div>
             </div>
             <div class="row g-4 mt-2">
                 <div class="col-sm-6 ps-sm-0">
-                    <button type="submit" class="btn btn-primary w-100">Create</button>
+                    <button id="signInModalButton" type="submit" class="btn btn-primary w-100">Create</button>
                 </div>
                 <div class="col-sm-6 pe-sm-0">
                     <button type="reset" class="btn btn-primary col-sm-6 w-100">Clear</button>
