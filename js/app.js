@@ -1,6 +1,7 @@
 import { updateDateHour } from "./helpers/getDate.js";
-import { toggleModalButtons, closeModalButtons,  manageModalState, resetInputFields, manageCloseOfModal } from "./helpers/toggleModal.js";
+import { toggleModalButtons, closeModalButtons,  manageModalState, manageCloseOfModal } from "./helpers/toggleModal.js";
 import { validateSignInModal } from "./helpers/formValidation.js";
+import { resetInputFields } from "./helpers/inputStateManagement.js";
 
 const toggleThemeButton = document.getElementById('toggle-theme');
 const lightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
@@ -53,10 +54,14 @@ inputs.forEach(input => {
 const signInForm = document.getElementById('signInForm');
 
 signInForm.addEventListener('submit', (e) => {
-    
     e.preventDefault();
-    
-    if(!validateSignInModal()) {
-        console.log("Complete fields correctly please.")
-    }
+    if (validateSignInModal()) {
+        resetInputFields("signInModal");
+        alert("User has been created.")
+    };
 });
+
+signInForm.addEventListener('reset', (e) => {
+    e.preventDefault();
+    resetInputFields("signInModal");
+})

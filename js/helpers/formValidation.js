@@ -1,126 +1,113 @@
-import { resetInputFields } from "./toggleModal.js";
 import { createUser } from "../users/CRUD.js";
+import { setValid, setError, resetFieldsState } from "./inputStateManagement.js"
 
 function validateSignInModal() {
 
-    // const name = document.getElementById('name-input');
-    // const surname = document.getElementById('surname-input');
+    const name = document.getElementById('name-input');
+    const surname = document.getElementById('surname-input');
     const username = document.getElementById('username-input');
     const password = document.getElementById('password-input');
     const bornDate = document.getElementById('born-input');
     const gender = document.getElementById('gender-select');
     const email = document.getElementById('email-input');
 
-    const inputsFields = document.querySelectorAll('input[name="signin-modal"]');
-    const selectFields = document.querySelectorAll('select[name="signin-modal"]')
+    let valid = true;
+    const nameMinLength = 5, surnameMinLength = 5, usernameMinLength = 5, passwordMinLength = 10;
 
-    const modalId = "signInModal";
-    inputsFields.forEach(input => input.value = input.value.trim());
-
-
-    if (username.value.size == 0) {
-        
+    if (name.value.length < nameMinLength) {
+        setError(name, "It must to be " + nameMinLength + " characters length minimum.");
+        valid = false;
     }
+    else setValid(name);
 
-    if (password.value.size == 0) {
-        
+    if (surname.value.length < surnameMinLength) {
+        setError(surname, "It must to be " + surnameMinLength + " characters length minimum.");
+        valid = false;
     }
+    else setValid(surname);
 
-    if (email.value.size == 0) {
-        
+    if (username.value == "") {
+        setError(username, "Input a not empty username");
+        valid = false;
     }
+    else if (username.value.length < usernameMinLength) {
+        setError(username, "It must to be " + usernameMinLength + " characters length minimum.");
+        valid = false;
+    }
+    else setValid(username);
+
+    if (password.value == "") {
+        setError(password, "Input a not empty password");
+        valid = false;
+    }
+    else if (password.value.length < passwordMinLength) {
+        setError(password, "It must to be " + passwordMinLength + " characters length minimum.");
+        valid = false;
+    }
+    else setValid(password);
+
+    if (email.value == "") {
+        setError(email, "Input a not empty email");
+        valid = false;
+    }
+    else if (!validateEmail(email.value)) {
+        setError(email, "It is not a valid email.");
+        valid = false;
+    }
+    else setValid(email);
 
     if (!validateDate(bornDate.value)) {
-        
+        setError(bornDate, "It is not a valid date.");
+        valid = false;
     }
-
-    if (!validateEmail(email.value)) {
-        
-    }
+    else setValid(bornDate);
 
     if (!validateSelectField(gender.value)) {
-        
+        setError(gender, "The value is not a valid option.");
+        valid = false;
     }
+    else setValid(gender);
 
-    if (!validateMinlength(username)) {
-        
-    }
-
-    if (!validateMinlength(password)) {
-        
-    }
-    
-    /*
-    if ((username.value.size == 0) || (password.value.size == 0) || (email.value.size == 0)) {
-        
-        console.log("A field is empty!");
-        return false;
-    }   
-    
-    if (!validateDate(bornDate.value) || !validateEmail(email.value) || !validateSelectField(gender.value)) {
-        
-        console.log("Date, Email or Date is wrong");
-        return false
-    }
-
-    if (!validateMinlength(username) || !validateMinlength(password)) {
-
-        console.log("A field has not the minium length")
-        return false
-    }*/
 
     const data = [];
+    
+    const inputsFields = document.querySelectorAll('input[name="signin-modal"]');
+    const selectFields = document.querySelectorAll('select[name="signin-modal"]');
 
     inputsFields.forEach(input => {
-        data.push(input.value)
+        data.push(input.value.trim())
     })
 
     selectFields.forEach(select => {
         data.push(select.value)
     })
 
-    createUser(...data);
-    resetInputFields(modalId);
-}
-
-
-
-
-
-function validateMinlength(inputfield) {
-
-    let valid = true;
-
-    if (inputfield.hasAttribute('minlength')) {
-
-        const minlength = Number.parseInt(inputfield.getAttribute('minlength'));
-
-        if (inputfield.value.length < minlength) {
-            valid = false;
-        }
+    if (valid) {
+        createUser(...data);
+        resetFieldsState([name, surname, username, password, bornDate, gender, email]);
     }
 
     return valid;
 }
 
-function validateEmail(inputfield) {
 
-    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'/;
-    return (emailRegExp.test(inputfield.value)) ? true : false;
+
+function validateEmail(email) {
+
+    const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return (emailRegExp.test(email)) ? true : false;
 }
 
-function validateDate(inputfield) {
+function validateDate(date) {
 
-    const dateRegExp = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-    return (dateRegExp.test(inputfield.value)) ? true : false;
+    const dateRegExp = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/;   // yyyy -/ mm -/ dd
+    return ((date != "") || (dateRegExp.test(date))) ? true : false;
 }
 
 function validateSelectField(select) {
 
-    let valid = true;
-    const selectOptions = ["Male", "Female", "Other", "Confidential"];
-
-    return ((select.value == "") || (!selectOptions.includes(select.value))) ? false : true;
+    const selectOptions = ["male", "female", "other", "confidential"];
+    return ((select.value != "") && (!selectOptions.includes(select))) ? false : true;
 }
 
-export { validateSignInModal}
+export { validateSignInModal }

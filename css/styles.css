@@ -21,6 +21,8 @@
 
     --light: hsl(0, 0%, 100%);
     --dark: hsl(0, 0%, 0%);
+
+    --valid: hsl(125, 100%, 34%);
 }
 
 body {
@@ -61,21 +63,6 @@ button:is(.btn-close):focus {
 .modal-box::backdrop {
     background-color: hsla(0, 0%, 10%, 0.651);
 }
-
-.modal-box:is(#signInModal) {
-    background-color: aqua;
-}
-
-/* .modal-box:is(#signUpModal) {
-}
-
-.modal-box:is(#viewUsersModal) {
-}
-
-.modal-box:is(#deleteUserModal) {
-} */
-
-
 
 .theme-switch {
     width: 60px;

@@ -1,3 +1,5 @@
+import { resetInputFields } from "./inputStateManagement.js";
+
 const toggleModalButtons = document.querySelectorAll('.modal-toggle');
 const closeModalButtons = document.querySelectorAll('.btn-close');
 
@@ -58,36 +60,4 @@ function manageCloseOfModal(closeButtonId) {
     resetInputFields(modalId);
 }
 
-function resetInputFields(modalId) {
-     
-    let inputFields = null, selectFields = null;
-
-    switch (modalId) {
-        case "signInModal":
-            inputFields = document.querySelectorAll('input[name="signin-modal"]');
-            selectFields = document.querySelectorAll('select[name="signin-modal"]');
-            break;
-
-        case "signUpModal":
-            inputFields = document.querySelectorAll('input[name="signup-modal"]');
-            selectFields = document.querySelectorAll('select[name="signup-modal"]');
-            break;
-    
-        default:
-            break;
-    }
-
-    if (inputFields !== null && inputFields.length > 0) {
-        Object.values(inputFields).forEach(field => {
-            field.value = "";
-        })
-    }
-
-    if (selectFields !== null && selectFields.length > 0) {
-        Object.values(selectFields).forEach(field => {
-            field.value = "Click to see the options";
-        })
-    }
-}
-
-export { toggleModalButtons, closeModalButtons, manageModalState, manageCloseOfModal, resetInputFields }
+export { toggleModalButtons, closeModalButtons, manageModalState, manageCloseOfModal }
