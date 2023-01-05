@@ -2,6 +2,7 @@ import { updateDateHour } from "./helpers/getDate.js";
 import { toggleModalButtons, closeModalButtons,  manageModalState, manageCloseOfModal } from "./helpers/toggleModal.js";
 import { validateSignInModal, signUp, deleteUser } from "./helpers/formValidation.js";
 import { resetInputFields } from "./helpers/inputStateManagement.js";
+import { viewUser } from "./users/CRUD.js";
 
 const toggleThemeButton = document.getElementById('toggle-theme');
 const lightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
@@ -50,6 +51,7 @@ inputs.forEach(input => {
 
 
 
+
 const signInForm = document.getElementById('signInForm');
 
 signInForm.addEventListener('submit', (e) => {
@@ -64,7 +66,6 @@ signInForm.addEventListener('reset', (e) => {
     e.preventDefault();
     resetInputFields("signInModal");
 })
-
 
 
 const signUpForm = document.getElementById('signUpForm');
@@ -85,7 +86,6 @@ signUpForm.addEventListener('reset', (e) => {
 })
 
 
-
 const deleteForm = document.getElementById('deleteForm');
 
 deleteForm.addEventListener('submit', (e) => {
@@ -101,4 +101,30 @@ deleteForm.addEventListener('submit', (e) => {
 deleteForm.addEventListener('reset', (e) => {
     e.preventDefault();
     resetInputFields("deleteUserModal");
+})
+
+
+
+const viewUsersButton = document.getElementById('viewUsersButton');
+const tableBody = document.getElementById('users-table_body');
+
+viewUsersButton.addEventListener('click', (e) => {
+
+    tableBody.innerHTML = ``;
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const id = localStorage.key(i);
+        const user = viewUser(id);
+        const row = `
+            <tr>
+                <th scope="row">${id}</th>
+                <td>${user.name}</td>
+                <td>${user.surname}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${user.gender}</td>
+                <td>${user.bornDate}</td>
+            </tr>`;
+        tableBody.innerHTML += row;
+    }
 })

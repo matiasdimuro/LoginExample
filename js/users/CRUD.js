@@ -17,8 +17,11 @@ function deleteUser(username) {
     localStorage.removeItem(id);
 }
 
-function viewUser() {
+function viewUser(id) {
 
+    const userData = JSON.parse(localStorage.getItem(id));
+    console.log(userData);
+    return { ...userData };
 }
 
 export { createUser, deleteUser, viewUser };

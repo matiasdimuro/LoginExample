@@ -170,10 +170,27 @@
 
     <dialog 
         id="viewUsersModal" 
-        class="modal-box p-4 container-sm bg-light border border-2 border-dark rounded position-relative">
-        <h2>Modal 3</h2>
-        <p>Esto es un parrafo</p>
-        <button id="viewUsersCloseButton" type="reset" class="btn-close position-absolute top-0 end-0 mt-2 me-2"></button>
+        class="modal-box pt-3 p-4 container-sm bg-light border border-2 border-dark rounded overflow-hidden">
+        <div class="w-100 mb-3 d-flex justify-content-end">
+            <button id="viewUsersCloseButton" type="reset" class="btn-close">
+            </button>
+        </div>
+        <div class="overflow-x-scroll">
+            <table class="table table-striped text-center">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Born</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table_body"></tbody>
+            </table>
+        </div>
     </dialog>
 
     <dialog 
