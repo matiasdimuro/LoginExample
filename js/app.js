@@ -110,21 +110,36 @@ const tableBody = document.getElementById('users-table_body');
 
 viewUsersButton.addEventListener('click', (e) => {
 
-    tableBody.innerHTML = ``;
+    const table = document.getElementById('table');
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const id = localStorage.key(i);
-        const user = viewUser(id);
-        const row = `
-            <tr>
-                <th scope="row">${id}</th>
-                <td>${user.name}</td>
-                <td>${user.surname}</td>
-                <td>${user.username}</td>
-                <td>${user.email}</td>
-                <td>${user.gender}</td>
-                <td>${user.bornDate}</td>
-            </tr>`;
-        tableBody.innerHTML += row;
+    if (localStorage.length > 0) {
+
+        tableBody.innerHTML = ``;
+        table.classList.remove('d-none');
+        table.nextElementSibling.classList.add('d-none');
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const id = localStorage.key(i);
+            const user = viewUser(id);
+            const row = `
+                <tr>
+                    <th scope="row">${id}</th>
+                    <td>${user.name}</td>
+                    <td>${user.surname}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.bornDate}</td>
+                </tr>`;
+            tableBody.innerHTML += row;
+        }
+    }
+
+    else {
+        table.classList.add('d-none');
+        table.nextElementSibling.classList.remove('d-none');
+        table.nextElementSibling.innerHTML = `
+            <p class="h3 m-2 text-centerfw-bold">There are not users created.</p>
+        `
     }
 })

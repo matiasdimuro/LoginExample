@@ -12,7 +12,7 @@ function validateSignInModal() {
     const email = document.getElementById('email-input');
 
     let valid = true;
-    const nameMinLength = 5, surnameMinLength = 5, usernameMinLength = 5, passwordMinLength = 10;
+    const nameMinLength = 3, surnameMinLength = 3, usernameMinLength = 5, passwordMinLength = 10;
 
     if (name.value.length < nameMinLength) {
         setError(name, "It must to be " + nameMinLength + " characters length minimum.");
