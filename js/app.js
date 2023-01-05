@@ -1,6 +1,6 @@
 import { updateDateHour } from "./helpers/getDate.js";
 import { toggleModalButtons, closeModalButtons,  manageModalState, manageCloseOfModal } from "./helpers/toggleModal.js";
-import { validateSignInModal } from "./helpers/formValidation.js";
+import { validateSignInModal, signUp, deleteUser } from "./helpers/formValidation.js";
 import { resetInputFields } from "./helpers/inputStateManagement.js";
 
 const toggleThemeButton = document.getElementById('toggle-theme');
@@ -50,13 +50,12 @@ inputs.forEach(input => {
 
 
 
-
 const signInForm = document.getElementById('signInForm');
 
 signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (validateSignInModal()) {
-        resetInputFields("signInModal");
+        setTimeout(() => resetInputFields("signInModal"), 1200);
         alert("User has been created.")
     };
 });
@@ -64,4 +63,42 @@ signInForm.addEventListener('submit', (e) => {
 signInForm.addEventListener('reset', (e) => {
     e.preventDefault();
     resetInputFields("signInModal");
+})
+
+
+
+const signUpForm = document.getElementById('signUpForm');
+
+signUpForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+    
+    const surname = document.getElementById("username-signup-input");
+    const password = document.getElementById("password-signup-input");
+    
+    signUp(surname, password);
+});
+
+signUpForm.addEventListener('reset', (e) => {
+    e.preventDefault();
+    resetInputFields("signUpModal");
+})
+
+
+
+const deleteForm = document.getElementById('deleteForm');
+
+deleteForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+    
+    const surname = document.getElementById("username-delete-input");
+    const password = document.getElementById("password-delete-input");
+    
+    deleteUser(surname, password);
+});
+
+deleteForm.addEventListener('reset', (e) => {
+    e.preventDefault();
+    resetInputFields("deleteUserModal");
 })

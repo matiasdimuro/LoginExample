@@ -1,11 +1,14 @@
-const setError = (field, message) => {
+const setError = (field, message = "") => {
 
     const span = field.nextElementSibling;
 
     field.classList.add("border-danger");
     field.classList.remove("border-success");
-    span.classList.remove("visually-hidden");
-    span.textContent = message;
+
+    if (span != null) {
+        span.classList.remove("visually-hidden");
+        span.textContent = message;
+    }
 }
 
 const setValid = (field) => {
@@ -14,7 +17,7 @@ const setValid = (field) => {
 
     field.classList.remove("border-danger");
     field.classList.add("border-success");
-    span.classList.add("visually-hidden");
+    span?.classList.add("visually-hidden");
 }
 
 
@@ -23,7 +26,7 @@ const resetFieldsState = (obj) => {
     obj.forEach(field => {
         field.classList.remove("border-danger");
         field.classList.remove("border-success");
-        field.nextElementSibling.classList.add("visually-hidden");
+        field.nextElementSibling?.classList.add("visually-hidden");
     })
 }
 
@@ -39,9 +42,14 @@ function resetInputFields(modalId) {
 
         case "signUpModal":
             inputFields = document.querySelectorAll('input[name="signup-modal"]');
-            selectFields = document.querySelectorAll('select[name="signup-modal"]');
+            document.getElementById('signup-state').classList.add("visually-hidden");
             break;
     
+        case "deleteUserModal":
+            inputFields = document.querySelectorAll('input[name="delete-modal"]');
+            document.getElementById('delete-state').classList.add("visually-hidden");
+            break;
+
         default:
             break;
     }

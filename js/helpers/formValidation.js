@@ -1,4 +1,4 @@
-import { createUser } from "../users/CRUD.js";
+import { createUser, deleteUser as deleteUserFromDB } from "../users/CRUD.js";
 import { setValid, setError, resetFieldsState } from "./inputStateManagement.js"
 
 function validateSignInModal() {
@@ -92,6 +92,64 @@ function validateSignInModal() {
 
 
 
+function signUp(username, password) {
+    
+    /*
+     * It works by this way becauce what I only want to know if user exists or does not exist.
+     */
+
+    const users = Object.values(localStorage);
+    const exists = users.some((user) => (JSON.parse(user).username == username.value) && (JSON.parse(user).password == password.value));
+
+    const signUpStateTag = document.getElementById('signup-state');
+    signUpStateTag.classList.remove("visually-hidden");
+    
+    if (exists) {
+        signUpStateTag.classList.remove("text-danger");
+        signUpStateTag.classList.add("text-success");
+        signUpStateTag.textContent = "You have signed up!";
+        setValid(username);
+        setValid(password);
+    }
+    else {
+        signUpStateTag.classList.add("text-danger");
+        signUpStateTag.classList.remove("text-success");
+        signUpStateTag.textContent = "User is not registered. Try again.";
+        setError(username);
+        setError(password);
+    }
+
+    return exists;
+}
+
+
+function deleteUser(username, password) {
+    
+    const users = Object.values(localStorage);
+    const exists = users.some((user) => (JSON.parse(user).username == username.value) && (JSON.parse(user).password == password.value));
+
+    const signUpStateTag = document.getElementById('delete-state');
+    signUpStateTag.classList.remove("visually-hidden");
+    
+    if (exists) {
+        signUpStateTag.classList.remove("text-danger");
+        signUpStateTag.classList.add("text-success");
+        signUpStateTag.textContent = "User has been deleted!";
+        setValid(username);
+        setValid(password);
+        deleteUserFromDB(username.value);
+    }
+    else {
+        signUpStateTag.classList.add("text-danger");
+        signUpStateTag.classList.remove("text-success");
+        signUpStateTag.textContent = "User is not registered. Try again.";
+        setError(username);
+        setError(password);
+    }
+}
+
+
+
 function validateEmail(email) {
 
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -110,4 +168,4 @@ function validateSelectField(select) {
     return ((select.value != "") && (!selectOptions.includes(select))) ? false : true;
 }
 
-export { validateSignInModal }
+export { validateSignInModal, signUp, deleteUser }
